@@ -1,0 +1,226 @@
+@import url(http://fonts.googleapis.com/css?family=Lato:300,400,700);
+ body {
+    font-family: 'Lato', Calibri, Arial, sans-serif;
+    background: #fff;
+    font-weight: 400;
+    font-size: 15px;
+    color: #333;
+}
+body,h1,h2,h3,h4,h5,h6{
+    font-family: 'Lato', Calibri, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+}
+
+h5{
+    padding-bottom:10px;
+}
+
+.bg1 {
+    background: #f2f5f6;
+    /* Old browsers */
+    background: -moz-linear-gradient(45deg, #f2f5f6 0%, #c8d7dc 100%);
+    /* FF3.6+ */
+    background: -webkit-gradient(linear, left bottom, right top, color-stop(0%, #f2f5f6), color-stop(100%, #c8d7dc));
+    /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(45deg, #f2f5f6 0%, #c8d7dc 100%);
+    /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(45deg, #f2f5f6 0%, #c8d7dc 100%);
+    /* Opera 11.10+ */
+    background: -ms-linear-gradient(45deg, #f2f5f6 0%, #c8d7dc 100%);
+    /* IE10+ */
+    background: linear-gradient(45deg, #f2f5f6 0%, #c8d7dc 100%);
+    /* W3C */
+    filter: progid: DXImageTransform.Microsoft.gradient(startColorstr='#f2f5f6', endColorstr='#c8d7dc', GradientType=1);
+    /* IE6-9 fallback on horizontal gradient */
+}
+.bg2 {
+    background: #453444;
+    background: #453444;
+    /* Old browsers */
+    background: -moz-linear-gradient(-45deg, #453444 14%, #4885a5 100%);
+    /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, right bottom, color-stop(14%, #453444), color-stop(100%, #4885a5));
+    /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(-45deg, #453444 14%, #4885a5 100%);
+    /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(-45deg, #453444 14%, #4885a5 100%);
+    /* Opera 11.10+ */
+    background: -ms-linear-gradient(-45deg, #453444 14%, #4885a5 100%);
+    /* IE10+ */
+    background: linear-gradient(135deg, #453444 14%, #4885a5 100%);
+    /* W3C */
+    filter: progid: DXImageTransform.Microsoft.gradient(startColorstr='#453444', endColorstr='#4885a5', GradientType=1);
+    /* IE6-9 fallback on horizontal gradient */
+}
+
+.bg2 .panel-body{
+    color:#000;
+}
+
+h1 {
+    font-weight: 700;
+    font-size: 50px;
+}
+.reflect {
+    -moz-transform: scaleX(-1);
+    -o-transform: scaleX(-1);
+    -webkit-transform: scaleX(-1);
+    transform: scaleX(-1);
+    filter: FlipH;
+    -ms-filter: "FlipH";
+}
+#lower_right {
+    position: absolute;
+    bottom: 0;
+    right: 0%;
+}
+#upper_right {
+    position: absolute;
+    top: 0;
+    right: 0%;
+}
+#upper_left {
+    position: absolute;
+    top: 0;
+    left: 0%;
+}
+.keyword {
+    font-size: 20px;
+    height: 50px;
+}
+span {
+    font-weight: 300;
+    margin-top: -300px;
+}
+.index {
+    padding: 300px 0px 200px 0px;
+}
+.btn-primary {
+    width: 200px;
+    background: #960c0c;
+    /* Old browsers */
+    background: -moz-linear-gradient(top, #960c0c 0%, #cc0000 100%);
+    /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #960c0c), color-stop(100%, #cc0000));
+    /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top, #960c0c 0%, #cc0000 100%);
+    /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top, #960c0c 0%, #cc0000 100%);
+    /* Opera 11.10+ */
+    background: -ms-linear-gradient(top, #960c0c 0%, #cc0000 100%);
+    /* IE10+ */
+    background: linear-gradient(to bottom, #960c0c 0%, #cc0000 100%);
+    /* W3C */
+    filter: progid: DXImageTransform.Microsoft.gradient(startColorstr='#960c0c', endColorstr='#cc0000', GradientType=0);
+    /* IE6-9 */
+    transition: 0.2s;
+}
+.result {
+    padding:30px;
+}
+
+ #logo {
+    background: url(images/logo.png) 0px 0px;
+    display: inline-block;
+    width: 316px;
+    height: 258px;
+  }
+
+.label {
+    margin-left:10px;
+}
+
+.header {
+    color:#fff;
+    padding-bottom:70px;
+}
+
+.back-panel {
+    z-index:-3;
+}
+
+.gallery {
+    height:180px;
+    width:300px;
+}
+
+
+p+h4,a+h4,h2+h4 {
+    margin-top:20px;
+}
+
+
+
+h4 {
+    font-weight:400;
+}
+
+.movie-body {
+    margin-left:;
+}
+
+.caption {
+    margin-top:10px;
+    margin-bottom:-10px;
+}
+
+.thumbnail {
+    padding-top:15px;
+}
+
+
+
+.alert2 {
+    border-radius:20px;
+}
+
+
+
+.team-pic {
+    width:450px;
+    height:250px;
+}
+
+.leader {
+    width:100px;
+    height:110px;
+}
+
+.member-pic {
+    margin-top:-10px;
+}
+
+
+
+.power-topic {
+    padding-top:20px;
+}
+
+.versus-hero-topic {
+    font-size:30px;
+    text-shadow: 2px 2px 2px rgba(255, 255, 255, 1);
+    font-weight:400;
+    
+}
+
+.versus-img {
+    padding-top:150px;
+}
+
+.alert3 {
+    border-radius:40px;
+}
+
+.back_pic {
+    z-index:-4;
+}
+
+.button-versus {
+    margin-top:10px;
+}
+
+
+
+.bio {
+    padding-bottom:15px;
+}
