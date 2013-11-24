@@ -26,11 +26,11 @@
             <h1>SUPERHERO
                 <span>DB</span>
             </h1>
-            <form role="form">
+            <form action="result.php" method="post" role="form">
                 <div class="row">
                     <div class="col-xs-offset-3 col-xs-6">
                         <div class="form-group">
-                            <input type="text" class="form-control keyword text-center" id="keyword" placeholder="Characters, Movies, Teams">
+                            <input name="keyword" type="text" class="form-control keyword text-center" id="keyword" placeholder="Characters, Movies, Teams">
                         </div>
                         <button type="submit" class="btn btn-primary btn-lg">Search</button>
                     </div>

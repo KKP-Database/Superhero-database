@@ -17,6 +17,10 @@
 </head>
 
 <body class="bg2">
+    <?php 
+        require("server/Superhero.php");
+        $superhero = Superhero::findByName($_POST["keyword"]);
+    ?>
     <img id="upper_right" class="reflect back-panel" src="images/ironman.png" width="500px">
 
     <div class="container result">
@@ -29,7 +33,7 @@
             <div class="alert alert2 alert-success col-xs-offset-4 col-xs-4">
                 <h3>
                     <span class="glyphicon glyphicon-search"></span>RESULT :
-                    <span>Superman</span>
+                    <span><?php echo $superhero; ?></span>
                 </h3>
             </div>
 
