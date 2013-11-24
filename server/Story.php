@@ -5,6 +5,7 @@ class Story
 	private $name = '';
 	private $plot = '';
 	private $created_year = ''; // Collect as DATE
+    private $image_url = '';
 	private $publisher_id = null;
 
 	private static $dbConn = null;
@@ -34,6 +35,10 @@ class Story
 
     public function getCreatedYear () {
         return $this->created_year;
+    }
+
+    public function getImageUrl () {
+        return $this->image_url;
     }
 
     public function getPublisherId () {

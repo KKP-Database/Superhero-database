@@ -3,6 +3,7 @@ class Team
 {
     private $team_id = null;
     private $name = '';
+    private $image_url = '';
     private $alignment_id = null;
     
     private static $dbConn = null;
@@ -26,6 +27,11 @@ class Team
     public function getName ()
     {
         return $this->name;
+    }
+
+    public function getImageUrl ()
+    {
+        return $this->image_url;
     }
 
     public function getAlignmentId ()
