@@ -1,5 +1,4 @@
 <?php
-require_once "./DatabasePDO.php";
 class Movie
 {
 	private $movie_id = null;

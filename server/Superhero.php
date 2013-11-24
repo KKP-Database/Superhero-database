@@ -1,5 +1,4 @@
 <?php
-require_once "./DatabasePDO.php";
 class Superhero
 {
     private $superhero_id = null;
@@ -68,7 +67,7 @@ class Superhero
             $statement->bindValue(":id", $id);
             $statement->execute();
             $statement->setFetchMode(PDO::FETCH_CLASS, __CLASS__);
-            $superhero = $statement->fetch();
+            $superhero = $statement->fetchAll();
         } catch (PDOException $e) {
             echo "Error!: " . $e->getMessage();
             die();
@@ -82,11 +81,11 @@ class Superhero
         $superhero = null;
         try {
             $statement = self::$dbConn->prepare(
-            "SELECT  * from superhero WHERE name LIKE :name");
+            "SELECT * from superhero WHERE name LIKE :name");
             $statement->bindValue(":name", $name);
             $statement->execute();
             $statement->setFetchMode(PDO::FETCH_CLASS, __CLASS__);
-            $superhero = $statement->fetch();
+            $superhero = $statement->fetchAll();
         } catch (PDOException $e) {
             echo "Error!: " . $e->getMessage();
             die();

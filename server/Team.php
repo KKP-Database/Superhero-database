@@ -1,5 +1,4 @@
 <?php
-require_once "./DatabasePDO.php";
 class Team
 {
     private $team_id = null;

@@ -18,8 +18,15 @@
 
 <body class="bg2">
     <?php 
+        require("server/DatabasePDO.php");
         require("server/Superhero.php");
-        $superhero = Superhero::findByName($_POST["keyword"]);
+        require("server/Team.php");
+        require("server/Movie.php");
+        require("server/Story.php");
+        $superheros = Superhero::findByName($_POST["keyword"]);
+        $teams = Team::findByName($_POST["keyword"]);
+        $movies = Movie::findByName($_POST["keyword"]);
+        $stories = Story::findByName($_POST["keyword"]);
     ?>
     <img id="upper_right" class="reflect back-panel" src="images/ironman.png" width="500px">
 
@@ -33,7 +40,7 @@
             <div class="alert alert2 alert-success col-xs-offset-4 col-xs-4">
                 <h3>
                     <span class="glyphicon glyphicon-search"></span>RESULT :
-                    <span><?php echo $superhero; ?></span>
+                    <span><?php echo $_POST["keyword"]; ?></span>
                 </h3>
             </div>
 
@@ -43,35 +50,27 @@
         <div class="panel panel-warning">
             <div class="panel-heading text-center">
                 <h4>CHARACTER
-                    <span class="label label-warning">4 Results</span>
+                    <span class="label label-warning"><?php echo count($superheros); ?> Results</span>
                 </h4>
             </div>
             <div class="panel-body">
                 <div class="row">
-                    <div class="col-xs-2 text-center">
-                        <div class="row">
-                            <a href="character.html">
-                                <img src="http://upload.wikimedia.org/wikipedia/th/thumb/7/72/Superman.jpg/250px-Superman.jpg" class="img-circle" width="150px" height="150px">
-                            </a>
-                        </div>
-                        <div class="row">
-                            <a href="character.html">
-                                <h5>SUPERMAN</h5>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="col-xs-2 text-center">
-                        <div class="row">
-                            <a href="character.html">
-                                <img src="http://upload.wikimedia.org/wikipedia/th/thumb/7/72/Superman.jpg/250px-Superman.jpg" class="img-circle" width="150px" height="150px">
-                            </a>
-                        </div>
-                        <div class="row">
-                            <a href="character.html">
-                                <h5>SUPERMAN</h5>
-                            </a>
-                        </div>
-                    </div>
+                    <?php
+                        foreach($superheros as $superhero) {
+                            echo "<div class='col-xs-2 text-center'>";        
+                            echo "<div class='row'>";
+                            echo "<a href='character.html'>";
+                            echo "<img src='" . $superhero->getImageUrl() . "' class='img-circle' width='150px' height='150px'>";
+                            echo "</a>";
+                            echo "</div>";
+                            echo "<div class='row'>";
+                            echo "<a href='character.html'>";
+                            echo "<h5>" . $superhero->getName() . "</h5>";
+                            echo "</a>";
+                            echo "</div>";
+                            echo "</div>";
+                        }
+                    ?>
                 </div>
 
             </div>

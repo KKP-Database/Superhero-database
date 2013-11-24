@@ -1,5 +1,4 @@
 <?php
-require_once "./DatabasePDO.php";
 class Alignment
 {
 	private $alignment_id = null;

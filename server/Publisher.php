@@ -1,5 +1,4 @@
 <?php
-require_once "./DatabasePDO.php";
 class Publisher
 {
 	private $publisher_id = null;

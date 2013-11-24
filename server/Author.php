@@ -1,5 +1,4 @@
 <?php
-require_once "./DatabasePDO.php";
 class Author
 {
 	private $author_id = null;

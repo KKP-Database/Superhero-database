@@ -1,5 +1,4 @@
 <?php
-require_once "./DatabasePDO.php";
 class Director
 {
 	private $director_id = null;
