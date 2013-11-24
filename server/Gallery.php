@@ -20,7 +20,7 @@ class Gallery
     }
 
     public function getId () {
-        return $this->id;
+        return $this->gallery_id;
     }
 
     public function getGalleryUrl () {
@@ -41,7 +41,7 @@ class Gallery
             $statement->bindValue(":id", $id);
             $statement->execute();
             $statement->setFetchMode(PDO::FETCH_CLASS, __CLASS__);
-            $superhero = $statement->fetch();
+            $gallery = $statement->fetch();
         } catch (PDOException $e) {
             echo "Error!: " . $e->getMessage();
             die();
@@ -59,7 +59,7 @@ class Gallery
             $statement->bindValue(":id", $id);
             $statement->execute();
             $statement->setFetchMode(PDO::FETCH_CLASS, __CLASS__);
-            $superhero = $statement->fetch();
+            $gallery = $statement->fetch();
         } catch (PDOException $e) {
             echo "Error!: " . $e->getMessage();
             die();

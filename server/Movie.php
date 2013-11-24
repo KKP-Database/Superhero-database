@@ -24,7 +24,7 @@ class Movie
     }
 
     public function getId () {
-        return $this->id;
+        return $this->movie_id;
     }
 
     public function getName () {
@@ -61,7 +61,7 @@ class Movie
             $statement->bindValue(":id", $id);
             $statement->execute();
             $statement->setFetchMode(PDO::FETCH_CLASS, __CLASS__);
-            $superhero = $statement->fetch();
+            $movie = $statement->fetch();
         } catch (PDOException $e) {
             echo "Error!: " . $e->getMessage();
             die();
@@ -75,11 +75,12 @@ class Movie
         $movie = null;
         try {
             $statement = self::$dbConn->prepare(
-            "SELECT  * from movie WHERE name = :name");
+            "SELECT  * from movie WHERE name LIKE :name");
+            $name = "%" . $name . "%";
             $statement->bindValue(":name", $name);
             $statement->execute();
             $statement->setFetchMode(PDO::FETCH_CLASS, __CLASS__);
-            $superhero = $statement->fetch();
+            $movie = $statement->fetch();
         } catch (PDOException $e) {
             echo "Error!: " . $e->getMessage();
             die();

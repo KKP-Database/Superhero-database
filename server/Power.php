@@ -24,7 +24,7 @@ class Power
     }
 
     public function getId () {
-        return $this->id;
+        return $this->power_id;
     }
 
     public function getIntelligence () {
@@ -61,7 +61,7 @@ class Power
             $statement->bindValue(":id", $id);
             $statement->execute();
             $statement->setFetchMode(PDO::FETCH_CLASS, __CLASS__);
-            $superhero = $statement->fetch();
+            $power = $statement->fetch();
         } catch (PDOException $e) {
             echo "Error!: " . $e->getMessage();
             die();

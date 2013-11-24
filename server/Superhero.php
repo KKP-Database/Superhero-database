@@ -25,7 +25,7 @@ class Superhero
     
     public function getId ()
     {
-        return $this->id;
+        return $this->superhero_id;
     }
 
     public function getName ()

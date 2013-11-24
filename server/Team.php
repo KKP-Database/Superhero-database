@@ -21,7 +21,7 @@ class Team
     
     public function getId ()
     {
-        return $this->id;
+        return $this->team_id;
     }
 
     public function getName ()

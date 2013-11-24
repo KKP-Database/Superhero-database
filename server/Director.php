@@ -20,7 +20,7 @@ class Director
     }
 
     public function getId () {
-        return $this->id;
+        return $this->director_id;
     }
 
     public function getFirstName () {
@@ -41,7 +41,7 @@ class Director
             $statement->bindValue(":id", $id);
             $statement->execute();
             $statement->setFetchMode(PDO::FETCH_CLASS, __CLASS__);
-            $superhero = $statement->fetch();
+            $director = $statement->fetch();
         } catch (PDOException $e) {
             echo "Error!: " . $e->getMessage();
             die();
@@ -57,11 +57,12 @@ class Director
         $director = null;
         try {
             $statement = self::$dbConn->prepare(
-            "SELECT  * from director WHERE first_name = :name or last_name = :name");
+            "SELECT  * from director WHERE first_name LIKE :name or last_name LIKE :name");
+            $name = "%" . $name . "%";
             $statement->bindValue(":name", $name);
             $statement->execute();
             $statement->setFetchMode(PDO::FETCH_CLASS, __CLASS__);
-            $superhero = $statement->fetch();
+            $director = $statement->fetch();
         } catch (PDOException $e) {
             echo "Error!: " . $e->getMessage();
             die();
