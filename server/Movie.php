@@ -80,7 +80,7 @@ class Movie
         try {
             $statement = self::$dbConn->prepare(
             "SELECT  * from movie WHERE name LIKE :name");
-            $name = "%" . $name . "%";
+            if($name != "") $name = "%" . $name . "%";
             $statement->bindValue(":name", $name);
             $statement->execute();
             $statement->setFetchMode(PDO::FETCH_CLASS, __CLASS__);
