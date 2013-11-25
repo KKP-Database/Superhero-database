@@ -74,7 +74,7 @@ class Story
             $statement->bindValue(":name", $name);
             $statement->execute();
             $statement->setFetchMode(PDO::FETCH_CLASS, __CLASS__);
-            $story = $statement->fetch();
+            $story = $statement->fetchAll();
         } catch (PDOException $e) {
             echo "Error!: " . $e->getMessage();
             die();

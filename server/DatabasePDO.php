@@ -8,7 +8,7 @@ class DatabasePDO
      * FYI: I don't really have a database with username/password of root/root, just substitute
      * your actual DB
      */
-    static function getInstance ($dbName = 'superhero')
+    static function getInstance ($dbName = 'superhero2')
     {
         if (! array_key_exists($dbName, self::$_instance)) {
             $dbtype = 'mysql';

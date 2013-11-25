@@ -71,7 +71,7 @@ class Star
             $statement->bindValue(":name", $name);
             $statement->execute();
             $statement->setFetchMode(PDO::FETCH_CLASS, __CLASS__);
-            $star = $statement->fetch();
+            $star = $statement->fetchAll();
         } catch (PDOException $e) {
             echo "Error!: " . $e->getMessage();
             die();

@@ -19,7 +19,15 @@
 </head>
 
 <body class="bg2">
-<!--    <img id="upper_right" class="reflect" src="images/ironman.png" width="450px">-->
+    <?php 
+        require("server/DatabasePDO.php");
+        require("server/Superhero.php");
+        require("server/Power.php");
+        $current = Superhero::findById($_POST["current"]);
+        $opponent = Superhero::findById($_POST["opponent"]);
+        $cpower = Power::findById($current->getPowerId());
+        $opower = Power::findById($opponent->getPowerId());
+    ?>
     <img id="upper_left" class="back_pic" src="images/batman.png" width="490px">
 
     <div class="container result">
@@ -37,10 +45,10 @@
                 <div class="row">
                     <div class="col-xs-5 text-center">
                         <div class="alert alert3 alert-success col-xs-offset-2 col-xs-8">
-                            <span class="versus-hero-topic">Superman</span>
+                            <span class="versus-hero-topic"><?php echo $current->getName(); ?></span>
                         </div>
                         <div class="row">
-                            <img src="http://images1.wikia.nocookie.net/__cb20100819014815/superman/images/7/72/Superman.jpg" class="img-rounded" width="200px" height="300px">
+                            <img src="<?php echo $current->getImageUrl(); ?>" width="200px" height="300px">
                         </div>
 
                         <!--Power-->
@@ -52,7 +60,7 @@
                                 </div>
                                 <div class="col-sm-7">
                                     <div class="progress progress-striped active">
-                                        <div class="progress-bar" role="progressbar" aria-valuenow="94" aria-valuemin="0" aria-valuemax="100" style="width: 76%">
+                                        <div class="progress-bar" role="progressbar" aria-valuenow="94" aria-valuemin="0" aria-valuemax="100" style="width: <?php echo $cpower->getIntelligence(); ?>%">
                                         </div>
                                     </div>
                                 </div>
@@ -63,7 +71,7 @@
                                 </div>
                                 <div class="col-sm-7">
                                     <div class="progress progress-striped active">
-                                        <div class="progress-bar" role="progressbar" aria-valuenow="94" aria-valuemin="0" aria-valuemax="100" style="width: 50%">
+                                        <div class="progress-bar" role="progressbar" aria-valuenow="94" aria-valuemin="0" aria-valuemax="100" style="width: <?php echo $cpower->getStrength(); ?>%">
                                         </div>
                                     </div>
                                 </div>
@@ -74,7 +82,7 @@
                                 </div>
                                 <div class="col-sm-7">
                                     <div class="progress progress-striped active">
-                                        <div class="progress-bar" role="progressbar" aria-valuenow="94" aria-valuemin="0" aria-valuemax="100" style="width: 94%">
+                                        <div class="progress-bar" role="progressbar" aria-valuenow="94" aria-valuemin="0" aria-valuemax="100" style="width: <?php echo $cpower->getSpeed(); ?>%">
                                         </div>
                                     </div>
                                 </div>
@@ -85,7 +93,7 @@
                                 </div>
                                 <div class="col-sm-7">
                                     <div class="progress progress-striped active">
-                                        <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="94" aria-valuemin="0" aria-valuemax="100" style="width: 20%">
+                                        <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="94" aria-valuemin="0" aria-valuemax="100" style="width: <?php echo $cpower->getDurability(); ?>%">
                                         </div>
                                     </div>
                                 </div>
@@ -96,7 +104,7 @@
                                 </div>
                                 <div class="col-sm-7">
                                     <div class="progress progress-striped active">
-                                        <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="94" aria-valuemin="0" aria-valuemax="100" style="width:40%">
+                                        <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="94" aria-valuemin="0" aria-valuemax="100" style="width: <?php echo $cpower->getPower(); ?>%">
                                         </div>
                                     </div>
                                 </div>
@@ -107,7 +115,7 @@
                                 </div>
                                 <div class="col-sm-7">
                                     <div class="progress progress-striped active">
-                                        <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="94" aria-valuemin="0" aria-valuemax="100" style="width: 100%">
+                                        <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="94" aria-valuemin="0" aria-valuemax="100" style="width: <?php echo $cpower->getCombat(); ?>%">
                                         </div>
                                     </div>
                                 </div>
@@ -124,10 +132,10 @@
                     </div>
                    <div class="col-xs-5 text-center">
                         <div class="alert alert3 alert-danger col-xs-offset-2 col-xs-8">
-                            <span class="versus-hero-topic">Superman</span>
+                            <span class="versus-hero-topic"><?php echo $opponent->getName(); ?></span>
                         </div>
                         <div class="row">
-                            <img src="http://images1.wikia.nocookie.net/__cb20100819014815/superman/images/7/72/Superman.jpg" class="img-rounded" width="200px" height="300px">
+                            <img src="<?php echo $opponent->getImageUrl(); ?>" width="200px" height="300px">
                         </div>
 
                         <!--Power-->
@@ -139,7 +147,7 @@
                                 </div>
                                 <div class="col-sm-7">
                                     <div class="progress progress-striped active">
-                                        <div class="progress-bar" role="progressbar" aria-valuenow="94" aria-valuemin="0" aria-valuemax="100" style="width: 76%">
+                                        <div class="progress-bar" role="progressbar" aria-valuenow="94" aria-valuemin="0" aria-valuemax="100" style="width: <?php echo $opower->getIntelligence(); ?>%">
                                         </div>
                                     </div>
                                 </div>
@@ -150,7 +158,7 @@
                                 </div>
                                 <div class="col-sm-7">
                                     <div class="progress progress-striped active">
-                                        <div class="progress-bar" role="progressbar" aria-valuenow="94" aria-valuemin="0" aria-valuemax="100" style="width: 50%">
+                                        <div class="progress-bar" role="progressbar" aria-valuenow="94" aria-valuemin="0" aria-valuemax="100" style="width: <?php echo $opower->getStrength(); ?>%">
                                         </div>
                                     </div>
                                 </div>
@@ -161,7 +169,7 @@
                                 </div>
                                 <div class="col-sm-7">
                                     <div class="progress progress-striped active">
-                                        <div class="progress-bar" role="progressbar" aria-valuenow="94" aria-valuemin="0" aria-valuemax="100" style="width: 94%">
+                                        <div class="progress-bar" role="progressbar" aria-valuenow="94" aria-valuemin="0" aria-valuemax="100" style="width: <?php echo $opower->getSpeed(); ?>%">
                                         </div>
                                     </div>
                                 </div>
@@ -172,7 +180,7 @@
                                 </div>
                                 <div class="col-sm-7">
                                     <div class="progress progress-striped active">
-                                        <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="94" aria-valuemin="0" aria-valuemax="100" style="width: 20%">
+                                        <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="94" aria-valuemin="0" aria-valuemax="100" style="width: <?php echo $opower->getDurability(); ?>%">
                                         </div>
                                     </div>
                                 </div>
@@ -183,7 +191,7 @@
                                 </div>
                                 <div class="col-sm-7">
                                     <div class="progress progress-striped active">
-                                        <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="94" aria-valuemin="0" aria-valuemax="100" style="width:40%">
+                                        <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="94" aria-valuemin="0" aria-valuemax="100" style="width: <?php echo $opower->getPower(); ?>%">
                                         </div>
                                     </div>
                                 </div>
@@ -194,7 +202,7 @@
                                 </div>
                                 <div class="col-sm-7">
                                     <div class="progress progress-striped active">
-                                        <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="94" aria-valuemin="0" aria-valuemax="100" style="width: 100%">
+                                        <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="94" aria-valuemin="0" aria-valuemax="100" style="width: <?php echo $opower->getCombat(); ?>%">
                                         </div>
                                     </div>
                                 </div>

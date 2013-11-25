@@ -1,9 +1,8 @@
 <?php
-class Director
+class PortraitedBy
 {
-	private $director_id = null;
-	private $first_name = '';
-	private $last_name = '';
+	private $superhero_id = null;
+	private $star_id = null;
 
 	private static $dbConn = null;
     public function __construct ()
@@ -18,54 +17,47 @@ class Director
         }
     }
 
-    public function getId () {
-        return $this->director_id;
+    public function getSuperheroId () {
+        return $this->superhero_id;
     }
 
-    public function getFirstName () {
-        return $this->first_name;
+    public function getStarId () {
+        return $this->star_id;
     }
 
-    public function getLastName () {
-        return $this->last_name;
-    }
-
-    public static function findById ($id)
+    public static function findBySuperheroId ($id)
     {
         self::initializeConnection();
-        $director = null;
+        $portraitedby = null;
         try {
             $statement = self::$dbConn->prepare(
-            "SELECT  * from director WHERE director_id = :id");
+            "SELECT  * from portraited_by WHERE superhero_id = :id");
             $statement->bindValue(":id", $id);
             $statement->execute();
             $statement->setFetchMode(PDO::FETCH_CLASS, __CLASS__);
-            $director = $statement->fetch();
+            $portraitedby = $statement->fetchAll();
         } catch (PDOException $e) {
             echo "Error!: " . $e->getMessage();
             die();
         }
-        return $director;
+        return $portraitedby;
     }
 
-    // Should find by both first/last name in one method
-
-    public static function findByName ($name)
+    public static function findByStarId ($id)
     {
         self::initializeConnection();
-        $director = null;
+        $portraitedby = null;
         try {
             $statement = self::$dbConn->prepare(
-            "SELECT  * from director WHERE first_name LIKE :name or last_name LIKE :name");
-            $name = "%" . $name . "%";
-            $statement->bindValue(":name", $name);
+            "SELECT  * from portraited_by WHERE star_id = :id");
+            $statement->bindValue(":id", $id);
             $statement->execute();
             $statement->setFetchMode(PDO::FETCH_CLASS, __CLASS__);
-            $director = $statement->fetchAll();
+            $portraitedby = $statement->fetchAll();
         } catch (PDOException $e) {
             echo "Error!: " . $e->getMessage();
             die();
         }
-        return $director;
+        return $portraitedby;
     }
 }

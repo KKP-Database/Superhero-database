@@ -56,7 +56,7 @@ class Publisher
             $statement->bindValue(":name", $name);
             $statement->execute();
             $statement->setFetchMode(PDO::FETCH_CLASS, __CLASS__);
-            $publisher = $statement->fetch();
+            $publisher = $statement->fetchAll();
         } catch (PDOException $e) {
             echo "Error!: " . $e->getMessage();
             die();

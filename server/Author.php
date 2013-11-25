@@ -61,7 +61,7 @@ class Author
             $statement->bindValue(":name", $name);
             $statement->execute();
             $statement->setFetchMode(PDO::FETCH_CLASS, __CLASS__);
-            $author = $statement->fetch();
+            $author = $statement->fetchAll();
         } catch (PDOException $e) {
             echo "Error!: " . $e->getMessage();
             die();

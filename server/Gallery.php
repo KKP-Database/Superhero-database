@@ -1,5 +1,4 @@
 <?php
-require_once "./DatabasePDO.php";
 class Gallery
 {
 	private $gallery_id = null;
@@ -59,7 +58,7 @@ class Gallery
             $statement->bindValue(":id", $id);
             $statement->execute();
             $statement->setFetchMode(PDO::FETCH_CLASS, __CLASS__);
-            $gallery = $statement->fetch();
+            $gallery = $statement->fetchAll();
         } catch (PDOException $e) {
             echo "Error!: " . $e->getMessage();
             die();

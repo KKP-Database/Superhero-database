@@ -12,8 +12,10 @@
     <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap-theme.min.css">
 
     <!-- Latest compiled and minified JavaScript -->
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
     <script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.2/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="css.css">
+    <script src="server.js" type="text/javascript"></script>
 </head>
 
 <body class="bg2">
@@ -59,12 +61,12 @@
                         foreach($superheros as $superhero) {
                             echo "<div class='col-xs-2 text-center'>";        
                             echo "<div class='row'>";
-                            echo "<a href='character.html'>";
+                            echo "<a href='#' id='" . $superhero->getId() . "' onclick='sendSuperheroID(this.id)'>";
                             echo "<img src='" . $superhero->getImageUrl() . "' class='img-circle' width='150px' height='150px'>";
                             echo "</a>";
                             echo "</div>";
                             echo "<div class='row'>";
-                            echo "<a href='character.html'>";
+                            echo "<a href='#' id='" . $superhero->getId() . "' onclick='sendSuperheroID(this.id)'>";
                             echo "<h5>" . $superhero->getName() . "</h5>";
                             echo "</a>";
                             echo "</div>";
@@ -72,8 +74,10 @@
                         }
                     ?>
                 </div>
-
             </div>
+            <form id="superhero-form" action="superhero.php" method="post">
+                <input id="superheroID" type="hidden" name="superheroID">
+            </form>
         </div>
         <!-- Character End -->
 
@@ -81,37 +85,32 @@
         <div class="panel panel-danger ">
             <div class="panel-heading text-center">
                 <h4>STORY
-                    <span class="label label-danger">4 Results</span>
+                    <span class="label label-danger"><?php echo count($stories); ?> Results</span>
                 </h4>
             </div>
             <div class="panel-body">
                  <div class="row">
-                    <div class="col-xs-2 text-center">
-                        <div class="row">
-                            <a href="story.html">
-                                <img src="http://upload.wikimedia.org/wikipedia/th/thumb/7/72/Superman.jpg/250px-Superman.jpg" class="img-circle" width="150px" height="150px">
-                            </a>
-                        </div>
-                        <div class="row">
-                            <a href="story.html">
-                                <h5>SUPERMAN</h5>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="col-xs-2 text-center">
-                        <div class="row">
-                            <a href="story.html">
-                                <img src="http://upload.wikimedia.org/wikipedia/th/thumb/7/72/Superman.jpg/250px-Superman.jpg" class="img-circle" width="150px" height="150px">
-                            </a>
-                        </div>
-                        <div class="row">
-                            <a href="story.html">
-                                <h5>SUPERMAN</h5>
-                            </a>
-                        </div>
-                    </div>
-                </div>
+                    <?php
+                        foreach($stories as $story) {
+                            echo "<div class='col-xs-2 text-center'>";        
+                            echo "<div class='row'>";
+                            echo "<a href='#' id='" . $story->getId() . "' onclick='sendStoryID(this.id)'>";
+                            echo "<img src='" . $story->getImageUrl() . "' class='img-circle' width='150px' height='150px'>";
+                            echo "</a>";
+                            echo "</div>";
+                            echo "<div class='row'>";
+                            echo "<a href='#' id='" . $story->getId() . "' onclick='sendStoryID(this.id)'>";
+                            echo "<h5>" . $story->getName() . "</h5>";
+                            echo "</a>";
+                            echo "</div>";
+                            echo "</div>";
+                        }
+                    ?>
+                </div>  
             </div>
+            <form id="story-form" action="story.php" method="post">
+                <input id="storyID" type="hidden" name="storyID">
+            </form>
         </div>
         <!-- Story End -->
 
@@ -119,37 +118,32 @@
         <div class="panel panel-info">
             <div class="panel-heading  text-center">
                 <h4>MOVIE
-                    <span class="label label-info">5 Results</span>
+                    <span class="label label-info"><?php echo count($movies); ?> Results</span>
                 </h4>
             </div>
             <div class="panel-body">
-                 <div class="row">
-                    <div class="col-xs-2 text-center">
-                        <div class="row">
-                            <a href="movie.html">
-                                <img src="http://upload.wikimedia.org/wikipedia/th/thumb/7/72/Superman.jpg/250px-Superman.jpg" class="img-circle" width="150px" height="150px">
-                            </a>
-                        </div>
-                        <div class="row">
-                            <a href="movie.html">
-                                <h5>SUPERMAN</h5>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="col-xs-2 text-center">
-                        <div class="row">
-                            <a href="movie.html">
-                                <img src="http://upload.wikimedia.org/wikipedia/th/thumb/7/72/Superman.jpg/250px-Superman.jpg" class="img-circle" width="150px" height="150px">
-                            </a>
-                        </div>
-                        <div class="row">
-                            <a href="movie.html">
-                                <h5>SUPERMAN</h5>
-                            </a>
-                        </div>
-                    </div>
+                <div class="row">
+                    <?php
+                        foreach($movies as $movie) {
+                            echo "<div class='col-xs-2 text-center'>";        
+                            echo "<div class='row'>";
+                            echo "<a href='#' id='" . $movie->getId() . "' onclick='sendMovieID(this.id)'>";
+                            echo "<img src='" . $movie->getPosterUrl() . "' class='img-circle' width='150px' height='150px'>";
+                            echo "</a>";
+                            echo "</div>";
+                            echo "<div class='row'>";
+                            echo "<a href='#' id='" . $movie->getId() . "' onclick='sendMovieID(this.id)'>";
+                            echo "<h5>" . $movie->getName() . "</h5>";
+                            echo "</a>";
+                            echo "</div>";
+                            echo "</div>";
+                        }
+                    ?>        
                 </div>
             </div>
+            <form id="movie-form" action="movie.php" method="post">
+                <input id="movieID" type="hidden" name="movieID">
+            </form>
         </div>
         <!--Movie End-->
 
@@ -157,37 +151,32 @@
         <div class="panel panel-success">
             <div class="panel-heading  text-center">
                 <h4>Team
-                    <span class="label label-success">2 Results</span>
+                    <span class="label label-success"><?php echo count($teams); ?> Results</span>
                 </h4>
             </div>
             <div class="panel-body">
-                 <div class="row">
-                    <div class="col-xs-2 text-center">
-                        <div class="row">
-                            <a href="team.html">
-                                <img src="http://upload.wikimedia.org/wikipedia/th/thumb/7/72/Superman.jpg/250px-Superman.jpg" class="img-circle" width="150px" height="150px">
-                            </a>
-                        </div>
-                        <div class="row">
-                            <a href="team.html">
-                                <h5>SUPERMAN</h5>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="col-xs-2 text-center">
-                        <div class="row">
-                            <a href="team.html">
-                                <img src="http://upload.wikimedia.org/wikipedia/th/thumb/7/72/Superman.jpg/250px-Superman.jpg" class="img-circle" width="150px" height="150px">
-                            </a>
-                        </div>
-                        <div class="row">
-                            <a href="team.html">
-                                <h5>SUPERMAN</h5>
-                            </a>
-                        </div>
-                    </div>
-                </div>
+                <div class="row">
+                    <?php
+                        foreach($teams as $team) {
+                            echo "<div class='col-xs-2 text-center'>";        
+                            echo "<div class='row'>";
+                            echo "<a href='#' id='" . $team->getId() . "' onclick='sendTeamID(this.id)'>";
+                            echo "<img src='" . $team->getImageUrl() . "' class='img-circle' width='150px' height='150px'>";
+                            echo "</a>";
+                            echo "</div>";
+                            echo "<div class='row'>";
+                            echo "<a href='#' id='" . $team->getId() . "' onclick='sendTeamID(this.id)'>";
+                            echo "<h5>" . $team->getName() . "</h5>";
+                            echo "</a>";
+                            echo "</div>";
+                            echo "</div>";
+                        }
+                    ?>
+                </div>    
             </div>
+            <form id="team-form" action="team.php" method="post">
+                <input id="teamID" type="hidden" name="teamID">
+            </form>
         </div>
         <!--Team End-->
 

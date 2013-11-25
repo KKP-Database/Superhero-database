@@ -57,6 +57,26 @@ class Superhero
         return $this->power_id;
     }
 
+    public static function findAll ()
+    {
+        self::initializeConnection();
+        $superhero = null;
+        $name = "";
+        try {
+            $statement = self::$dbConn->prepare(
+            "SELECT * from superhero WHERE name LIKE :name");
+            $name = "%" . $name . "%";
+            $statement->bindValue(":name", $name);
+            $statement->execute();
+            $statement->setFetchMode(PDO::FETCH_CLASS, __CLASS__);
+            $superhero = $statement->fetchAll();
+        } catch (PDOException $e) {
+            echo "Error!: " . $e->getMessage();
+            die();
+        }
+        return $superhero;
+    }
+
     public static function findById ($id)
     {
         self::initializeConnection();
@@ -67,7 +87,7 @@ class Superhero
             $statement->bindValue(":id", $id);
             $statement->execute();
             $statement->setFetchMode(PDO::FETCH_CLASS, __CLASS__);
-            $superhero = $statement->fetchAll();
+            $superhero = $statement->fetch();
         } catch (PDOException $e) {
             echo "Error!: " . $e->getMessage();
             die();
@@ -82,6 +102,7 @@ class Superhero
         try {
             $statement = self::$dbConn->prepare(
             "SELECT * from superhero WHERE name LIKE :name");
+            $name = "%" . $name . "%";
             $statement->bindValue(":name", $name);
             $statement->execute();
             $statement->setFetchMode(PDO::FETCH_CLASS, __CLASS__);

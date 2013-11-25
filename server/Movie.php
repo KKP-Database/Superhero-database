@@ -8,6 +8,7 @@ class Movie
 	private $imdb_score = null;
 	private $poster_url = '';
 	private $trailer_url = '';
+    private $director_id = null;
 
 	private static $dbConn = null;
     public function __construct ()
@@ -50,6 +51,10 @@ class Movie
         return $this->trailer_url;
     }
 
+    public function getDirectorId() {
+        return $this->director_id;
+    }
+
     public static function findById ($id)
     {
         self::initializeConnection();
@@ -79,7 +84,7 @@ class Movie
             $statement->bindValue(":name", $name);
             $statement->execute();
             $statement->setFetchMode(PDO::FETCH_CLASS, __CLASS__);
-            $movie = $statement->fetch();
+            $movie = $statement->fetchAll();
         } catch (PDOException $e) {
             echo "Error!: " . $e->getMessage();
             die();

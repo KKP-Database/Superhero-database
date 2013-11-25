@@ -56,7 +56,7 @@ class Alignment
             $statement->bindValue(":alignment", $name);
             $statement->execute();
             $statement->setFetchMode(PDO::FETCH_CLASS, __CLASS__);
-            $alignment = $statement->fetch();
+            $alignment = $statement->fetchAll();
         } catch (PDOException $e) {
             echo "Error!: " . $e->getMessage();
             die();

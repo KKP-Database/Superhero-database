@@ -1,9 +1,9 @@
 <?php
-class Director
+class MemberOf
 {
-	private $director_id = null;
-	private $first_name = '';
-	private $last_name = '';
+	private $superhero_id = null;
+	private $team_id = null;
+    private $status = '';
 
 	private static $dbConn = null;
     public function __construct ()
@@ -18,54 +18,51 @@ class Director
         }
     }
 
-    public function getId () {
-        return $this->director_id;
+    public function getSuperheroId () {
+        return $this->superhero_id;
     }
 
-    public function getFirstName () {
-        return $this->first_name;
+    public function getStatus () {
+        return $this->status;
     }
 
-    public function getLastName () {
-        return $this->last_name;
+    public function getTeamId () {
+        return $this->team_id;
     }
 
-    public static function findById ($id)
+    public static function findBySuperheroId ($id)
     {
         self::initializeConnection();
-        $director = null;
+        $memberof = null;
         try {
             $statement = self::$dbConn->prepare(
-            "SELECT  * from director WHERE director_id = :id");
+            "SELECT  * from member_of WHERE superhero_id = :id");
             $statement->bindValue(":id", $id);
             $statement->execute();
             $statement->setFetchMode(PDO::FETCH_CLASS, __CLASS__);
-            $director = $statement->fetch();
+            $memberof = $statement->fetchAll();
         } catch (PDOException $e) {
             echo "Error!: " . $e->getMessage();
             die();
         }
-        return $director;
+        return $memberof;
     }
 
-    // Should find by both first/last name in one method
-
-    public static function findByName ($name)
+    public static function findByTeamId ($id)
     {
         self::initializeConnection();
-        $director = null;
+        $memberof = null;
         try {
             $statement = self::$dbConn->prepare(
-            "SELECT  * from director WHERE first_name LIKE :name or last_name LIKE :name");
-            $name = "%" . $name . "%";
-            $statement->bindValue(":name", $name);
+            "SELECT  * from member_of WHERE team_id = :id");
+            $statement->bindValue(":id", $id);
             $statement->execute();
             $statement->setFetchMode(PDO::FETCH_CLASS, __CLASS__);
-            $director = $statement->fetchAll();
+            $memberof = $statement->fetchAll();
         } catch (PDOException $e) {
             echo "Error!: " . $e->getMessage();
             die();
         }
-        return $director;
+        return $memberof;
     }
 }
