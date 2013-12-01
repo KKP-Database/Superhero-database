@@ -50,6 +50,11 @@
                         <div class="row">
                             <img src="<?php echo $current->getImageUrl(); ?>" width="200px" height="300px">
                         </div>
+                        <div class="row">
+                            <div class="circle win">
+                                WIN
+                            </div>
+                        </div>
 
                         <!--Power-->
                         <div class="text-right">
@@ -136,6 +141,11 @@
                         </div>
                         <div class="row">
                             <img src="<?php echo $opponent->getImageUrl(); ?>" width="200px" height="300px">
+                        </div>
+                        <div class="row">
+                            <div class="circle lose">
+                                LOSE
+                            </div>
                         </div>
 
                         <!--Power-->
