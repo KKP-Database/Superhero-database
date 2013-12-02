@@ -28,7 +28,7 @@
         require("server/CreatedBy.php");
         require("server/Author.php");
         $story = Story::findById($_POST["storyID"]);
-        $publisher = Publisher::findById($story->getPublisherId());
+        $publisher = Publisher::findById($story->getId());
         $superheroof = SuperheroOf::findByStoryId($story->getId());
         $createdby = CreatedBy::findByStoryId($story->getId());
     ?>

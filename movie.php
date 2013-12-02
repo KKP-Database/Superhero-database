@@ -26,8 +26,8 @@
         require("server/PortraitedIn.php");
         require("server/Director.php");
         $movie = Movie::findById($_POST["movieID"]);
-        $portraitedin = PortraitedIn::findByStarId($movie->getId());
-        $director = Director::findById($movie->getDirectorId());
+        $portraitedin = PortraitedIn::findByMovieId($_POST["movieID"]);
+        $director = Director::findById($_POST["movieID"]);
     ?>
     <img id="upper_left" class="reflect" src="images/spiderman.png" width="450px">
 

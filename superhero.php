@@ -37,8 +37,8 @@
         require("server/PortraitedBy.php");
         require("server/Star.php");
         $superhero = Superhero::findById($_POST["superheroID"]);
-        $power = Power::findById($superhero->getPowerId());
-        $alignment = Alignment::findById($superhero->getAlignmentId());
+        $power = Power::findBySuperheroId($superhero->getId());
+        $alignment = Alignment::findBySuperheroId($superhero->getId());
         $memberof = MemberOf::findBySuperheroId($superhero->getId());
         $portraitedby = PortraitedBy::findBySuperheroId($superhero->getId());
         $gallerys = Gallery::findBySuperheroId($superhero->getId());

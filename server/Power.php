@@ -68,5 +68,56 @@ class Power
         return $power;
     }
 
+    public static function findAvg ($id)
+    {
+        self::initializeConnection();
+        $power = null;
+        try {
+            $statement = self::$dbConn->prepare(
+            "SELECT (intelligence + strength + speed + durability + power + combat)/60.0 from power WHERE power_id = :id");
+            $statement->bindValue(":id", $id);
+            $statement->execute();
+            $power = $statement->fetch();
+        } catch (PDOException $e) {
+            echo "Error!: " . $e->getMessage();
+            die();
+        }
+        return $power;   
+    }
+
+    public static function findAllAvg ()
+    {
+        self::initializeConnection();
+        $power = null;
+        try {
+            $statement = self::$dbConn->prepare(
+            "SELECT (intelligence + strength + speed + durability + power + combat)/60.0, power_id from power ORDER BY (intelligence + strength + speed + durability + power + combat)/6.0");
+            $statement->execute();
+            $power = $statement->fetchAll();
+        } catch (PDOException $e) {
+            echo "Error!: " . $e->getMessage();
+            die();
+        }
+        return $power;   
+    }
+
+    public static function findBySuperheroId ($id)
+    {
+        self::initializeConnection();
+        $power = null;
+        try {
+            $statement = self::$dbConn->prepare(
+            "SELECT  * from power INNER JOIN superhero ON power.power_id = superhero.power_id WHERE superhero_id = :id");
+            $statement->bindValue(":id", $id);
+            $statement->execute();
+            $statement->setFetchMode(PDO::FETCH_CLASS, __CLASS__);
+            $power = $statement->fetch();
+        } catch (PDOException $e) {
+            echo "Error!: " . $e->getMessage();
+            die();
+        }
+        return $power;
+    }
+
     // Maybe add find by each power attributes (Hero who have speed > 100)
 }

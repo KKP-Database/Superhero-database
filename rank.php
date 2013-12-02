@@ -14,12 +14,17 @@
     <!-- Latest compiled and minified JavaScript -->
     <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.2/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="css.css">
-    <style type="text/css">
-        
-    </style>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="server.js" type="text/javascript"></script>
 </head>
 
 <body class="bg2">
+    <?php 
+        require("server/DatabasePDO.php");
+        require("server/Power.php");
+        require("server/Superhero.php");
+        $powers = Power::findAllAvg();
+    ?>
     <img id="upper_right" class="reflect back-panel" src="images/ironman.png" width="500px">
 
     <div class="container result">
@@ -34,7 +39,7 @@
         <!--Character Start-->
         <div class="panel panel-default">
             <div class="panel-heading text-center">
-                <h4>Top10 Superheroes
+                <h4>Superhero Ranking
                 </h4>
             </div>
             <div class="panel-body">
@@ -49,39 +54,26 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr class="danger rank1">
-                                 
-                                <td class="col-xs-2">#1</td>
-                                <td class="col-xs-2">
-                                    <a href="character.html">
-                                        <img src="http://upload.wikimedia.org/wikipedia/th/thumb/7/72/Superman.jpg/250px-Superman.jpg" class="img-rounded">
-                                    </a>
-                                </td>
-                                <td>
-                                    <a href="character.html">Superman</a></td>
-                                <td class="col-xs-2">8.3</td>
-
-                            </tr>
-                            <tr>
-                                <td class="col-xs-2">#2</td>
-                                <td class="col-xs-2 text-center">
-                                    <a href="character.html">
-                                        <img src="http://upload.wikimedia.org/wikipedia/th/thumb/7/72/Superman.jpg/250px-Superman.jpg" class="img-rounded">
-                                    </a>
-                                </td>
-                                <td><a href="character.html">Superman</a></td>
-                                <td class="col-xs-2">7.45</td>
-                            </tr>
-                            <tr>
-                                <td class="col-xs-2">#3</td>
-                                <td class="col-xs-2 text-center">
-                                    <a href="character.html">
-                                        <img src="http://upload.wikimedia.org/wikipedia/th/thumb/7/72/Superman.jpg/250px-Superman.jpg" class="img-rounded" width="120px" height="120px">
-                                    </a>
-                                </td>
-                                <td><a href="character.html">Superman</a></td>
-                                <td class="col-xs-2">4.3</td>
-                            </tr>
+                            <?php 
+                                $count = 1;
+                                foreach ($powers as $power) {
+                                    $superhero = Superhero::findByPowerId($power[1]);
+                                    if($count == 1) echo "<tr class='danger rank1'>";
+                                    else echo "<tr>";
+                                    echo "<td class='col-xs-2'>#" . $count . "</td>";
+                                    echo "<td class='col-xs-2'>";
+                                    echo "<a href='#' id='" . $superhero->getId() . "' onclick='sendSuperheroID(this.id)'>";
+                                    echo "<img src='" . $superhero->getImageUrl() . "'>";
+                                    echo "</a>";
+                                    echo "</td>";
+                                    echo "<td><a href='#' id='" . $superhero->getId() . "' onclick='sendSuperheroID(this.id)'>Superman</a></td>";
+                                    echo "<td class='col-xs-2'>" . substr($power[0], 0, 3) . "</td>";
+                                    echo "</tr>";
+                                }
+                            ?>
+                            <form id="superhero-form" action="superhero.php" method="post">
+                                <input id="superheroID" type="hidden" name="superheroID">
+                            </form>
                         </tbody>
                     </table>
                 </div>

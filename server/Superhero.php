@@ -113,4 +113,22 @@ class Superhero
         }
         return $superhero;
     }
+
+    public static function findByPowerId ($id)
+    {
+        self::initializeConnection();
+        $superhero = null;
+        try {
+            $statement = self::$dbConn->prepare(
+            "SELECT  * from superhero INNER JOIN power ON superhero.power_id = power.power_id WHERE power.power_id = :id");
+            $statement->bindValue(":id", $id);
+            $statement->execute();
+            $statement->setFetchMode(PDO::FETCH_CLASS, __CLASS__);
+            $superhero = $statement->fetch();
+        } catch (PDOException $e) {
+            echo "Error!: " . $e->getMessage();
+            die();
+        }
+        return $superhero;
+    }
 }

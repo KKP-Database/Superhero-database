@@ -31,7 +31,7 @@ class Publisher
         $publisher = null;
         try {
             $statement = self::$dbConn->prepare(
-            "SELECT * from publisher WHERE publisher_id = :id");
+            "SELECT * from publisher INNER JOIN story ON publisher.publisher_id = story.publisher_id WHERE story.story_id = :id");
             $statement->bindValue(":id", $id);
             $statement->execute();
             $statement->setFetchMode(PDO::FETCH_CLASS, __CLASS__);

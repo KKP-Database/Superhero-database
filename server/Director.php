@@ -36,7 +36,7 @@ class Director
         $director = null;
         try {
             $statement = self::$dbConn->prepare(
-            "SELECT  * from director WHERE director_id = :id");
+            "SELECT * from director INNER JOIN movie ON director.director_id = movie.director_id WHERE movie.movie_id = :id");
             $statement->bindValue(":id", $id);
             $statement->execute();
             $statement->setFetchMode(PDO::FETCH_CLASS, __CLASS__);

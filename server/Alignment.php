@@ -63,4 +63,22 @@ class Alignment
         }
         return $alignment;
     }
+
+    public static function findBySuperheroId ($id)
+    {
+        self::initializeConnection();
+        $alignment = null;
+        try {
+            $statement = self::$dbConn->prepare(
+            "SELECT  * from alignment INNER JOIN superhero ON alignment.alignment_id = superhero.alignment_id WHERE superhero_id = :id");
+            $statement->bindValue(":id", $id);
+            $statement->execute();
+            $statement->setFetchMode(PDO::FETCH_CLASS, __CLASS__);
+            $alignment = $statement->fetch();
+        } catch (PDOException $e) {
+            echo "Error!: " . $e->getMessage();
+            die();
+        }
+        return $alignment;
+    }
 }

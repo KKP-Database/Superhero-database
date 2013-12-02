@@ -27,6 +27,8 @@
         $opponent = Superhero::findById($_POST["opponent"]);
         $cpower = Power::findById($current->getPowerId());
         $opower = Power::findById($opponent->getPowerId());
+        $avgcpower = doubleval(Power::findAvg($current->getPowerId()));
+        $avgopower = doubleval(Power::findAvg($current->getPowerId()));
     ?>
     <img id="upper_left" class="back_pic" src="images/batman.png" width="490px">
 
@@ -51,9 +53,18 @@
                             <img src="<?php echo $current->getImageUrl(); ?>" width="200px" height="300px">
                         </div>
                         <div class="row">
-                            <div class="circle win">
-                                WIN
-                            </div>
+                            <?php
+                                if($avgopower > $avgcpower) {
+                                    echo "<div class='circle lose'>";
+                                    echo "LOSE";
+                                    echo "</div>";
+                                }
+                                else {
+                                    echo "<div class='circle win'>";
+                                    echo "WIN";
+                                    echo "</div>";   
+                                }
+                            ?>
                         </div>
 
                         <!--Power-->
@@ -143,9 +154,18 @@
                             <img src="<?php echo $opponent->getImageUrl(); ?>" width="200px" height="300px">
                         </div>
                         <div class="row">
-                            <div class="circle lose">
-                                LOSE
-                            </div>
+                            <?php
+                                if($avgopower < $avgcpower) {
+                                    echo "<div class='circle lose'>";
+                                    echo "LOSE";
+                                    echo "</div>";
+                                }
+                                else {
+                                    echo "<div class='circle win'>";
+                                    echo "WIN";
+                                    echo "</div>";   
+                                }
+                            ?>
                         </div>
 
                         <!--Power-->
