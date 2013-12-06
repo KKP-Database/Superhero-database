@@ -23,9 +23,7 @@
         require("server/DatabasePDO.php");
         require("server/Power.php");
         require("server/Superhero.php");
-//        $powers = Power::findAllAvg();
-        $powers = Power::findTopRankSH();
-        $team_powers = Power::findTopRankTeam();
+        $powers = Power::findAllAvg();
     ?>
     <img id="upper_right" class="reflect back-panel" src="images/ironman.png" width="500px">
 
@@ -59,19 +57,18 @@
                             <?php 
                                 $count = 1;
                                 foreach ($powers as $power) {
-//                                    $superhero = Superhero::findByPowerId($power[1]);
+                                    $superhero = Superhero::findByPowerId($power[1]);
                                     if($count == 1) echo "<tr class='danger rank1'>";
                                     else echo "<tr>";
                                     echo "<td class='col-xs-2'>#" . $count . "</td>";
-                                    echo "<td class='col-xs-2 text-center'>";
-                                    echo "<a href='#' id='" . $power['superhero_id'] . "' onclick='sendSuperheroID(this.id)'>";
-                                    echo "<img src='" . $power['image_url'] . "'>";
+                                    echo "<td class='col-xs-2'>";
+                                    echo "<a href='#' id='" . $superhero->getId() . "' onclick='sendSuperheroID(this.id)'>";
+                                    echo "<img src='" . $superhero->getImageUrl() . "'>";
                                     echo "</a>";
                                     echo "</td>";
-                                    echo "<td><a href='#' id='" . $power['superhero_id'] . "' onclick='sendSuperheroID(this.id)'>".$power['name']."</a></td>";
-                                    echo "<td class='col-xs-2'>" . sprintf('%0.2f',$power['score']). "</td>";
+                                    echo "<td><a href='#' id='" . $superhero->getId() . "' onclick='sendSuperheroID(this.id)'>Superman</a></td>";
+                                    echo "<td class='col-xs-2'>" . substr($power[0], 0, 3) . "</td>";
                                     echo "</tr>";
-                                    $count++;
                                 }
                             ?>
                             <form id="superhero-form" action="superhero.php" method="post">
@@ -79,40 +76,6 @@
                             </form>
                         </tbody>
                     </table>
-                    <br>
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <th>Rank</th>
-
-                                <th colspan="2">Team</th>
-                                <th>Total Score</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <?php 
-                                $count = 1;
-                                foreach ($team_powers as $t_power) {
-                                    if($count == 1) echo "<tr class='warning rank1'>";
-                                    else echo "<tr>";
-                                    echo "<td class='col-xs-2'>#" . $count . "</td>";
-                                    echo "<td class='col-xs-2 text-center'>";
-                                    echo "<a href='#' id='" . $t_power['team_id'] . "' onclick='sendTeamID(this.id)'>";
-                                    echo "<img id='team' src='" . $t_power['image_url'] . "'>";
-                                    echo "</a>";
-                                    echo "</td>";
-                                    echo "<td><a href='#' id='" . $t_power['team_id'] . "' onclick='sendTeamID(this.id)'>".$t_power['name']."</a></td>";
-                                    echo "<td class='col-xs-2'>" . sprintf('%0.2f', $t_power['avg_score']) . "</td>";
-                                    echo "</tr>";
-                                    $count++;
-                                }
-                            ?>
-                            <form id="team-form" action="team.php" method="post">
-                                <input id="teamID" type="hidden" name="teamID">
-                            </form>
-                        </tbody>
-                    </table>
-                    
                 </div>
 
 

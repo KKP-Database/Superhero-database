@@ -132,7 +132,7 @@ span {
 
 .header {
     color:#fff;
-    padding-bottom:70px;
+/*    padding-bottom:70px;*/
 }
 
 .back-panel {
@@ -278,12 +278,21 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#aebcbf', end
         height:160px;
     }
     
+    .table .rank1 img#team{
+        width:170px; 
+        height:130px;
+    }
     .table{
         font-size:18px;
     }
     
     .table img{
         width:100px; 
+        height:120px;
+    }
+
+    .table img#team{
+        width:150px; 
         height:120px;
     }
 
