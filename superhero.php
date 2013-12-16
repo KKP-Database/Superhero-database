@@ -115,8 +115,12 @@
                             </div>
                             <div class="col-sm-8">
                                 <?php
-                                    foreach ($portraitedby as $star) {
+                                    if($portraitedby == null) echo "-"; 
+                                    else {
+                                        foreach ($portraitedby as $star) {
+                                        if($star)
                                         echo "<a href='#' id='" . $star->getStarId() . "' onclick='sendStarID(this.id)'>" . Star::findById($star->getStarId())->getFirstName() . " " . Star::findById($star->getStarId())->getLastName() . "</a><br>";
+                                        }
                                     }
                                 ?>
                                 <form id="star-form" action="star.php" method="post">
@@ -219,7 +223,7 @@
                             </div>
 
                             <div class="row">
-                                <?php echo "<input type='hidden' name='current' value='" . $superhero->getId() . "'>"; ?>
+                                <?php echo "<input type='hidden' name='current' value='" . $_POST["superheroID"] . "'>"; ?>
                                 <button type="submit" class="btn btn-primary btn-lg button-versus">Versus</button>
                             </div>
 

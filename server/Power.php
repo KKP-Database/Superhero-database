@@ -91,7 +91,7 @@ class Power
         $power = null;
         try {
             $statement = self::$dbConn->prepare(
-            "SELECT (intelligence + strength + speed + durability + power + combat)/60.0, power_id from power ORDER BY (intelligence + strength + speed + durability + power + combat)/6.0");
+            "SELECT (intelligence + strength + speed + durability + power + combat)/60.0, power_id from power ORDER BY (intelligence + strength + speed + durability + power + combat)/6.0 DESC");
             $statement->execute();
             $power = $statement->fetchAll();
         } catch (PDOException $e) {

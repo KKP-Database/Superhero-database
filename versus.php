@@ -27,8 +27,10 @@
         $opponent = Superhero::findById($_POST["opponent"]);
         $cpower = Power::findById($current->getPowerId());
         $opower = Power::findById($opponent->getPowerId());
-        $avgcpower = doubleval(Power::findAvg($current->getPowerId()));
-        $avgopower = doubleval(Power::findAvg($current->getPowerId()));
+        $avgcpower = Power::findAvg($current->getPowerId());
+        $avgopower = Power::findAvg($opponent->getPowerId());
+        $avgcpower = doubleval($avgcpower[0]);
+        $avgopower = doubleval($avgopower[0]);
     ?>
     <img id="upper_left" class="back_pic" src="images/batman.png" width="490px">
 
@@ -40,8 +42,7 @@
         <!--Character Start-->
         <div class="panel panel-warning ">
             <div class="panel-heading text-center">
-                <h4>VERSUS
-                </h4>
+                <h4>VERSUS</h4>
             </div>
             <div class="panel-body">
                 <div class="row">

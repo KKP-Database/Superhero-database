@@ -15,7 +15,8 @@
     <script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.2/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="css.css">
     <link rel="stylesheet" href="rotate.css">
-
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="server.js" type="text/javascript"></script>
 </head>
 
 <body class="bg2">
@@ -27,7 +28,7 @@
         require("server/Alignment.php");
         $team = Team::findById($_POST["teamID"]);
         $memberof = MemberOf::findByTeamId($team->getId());
-        $alignment = Alignment::findById($team->getId());
+        $alignment = Alignment::findById($team->getAlignmentId());
     ?>
     <img id="upper_left" class="back_pic reflect" src="images/superman.png" width="500px" >
 
@@ -93,14 +94,21 @@
                                     foreach ($memberof as $member) {
                                         echo "<div class='col-xs-2'>";
                                         echo "<div class='thumbnail'>";
+                                        echo "<a href='#' id='" . Superhero::findById($member->getSuperheroId())->getId() . "' onclick='sendSuperheroID(this.id)'>";
                                         echo "<img src='" . Superhero::findById($member->getSuperheroId())->getImageUrl() . "' class='img-rounded member-pic' width='100px' height='80px'>";
+                                        echo "</a>";
                                         echo "<div class='caption text-center'>";
+                                        echo "<a href='#' id='" . Superhero::findById($member->getSuperheroId())->getId() . "' onclick='sendSuperheroID(this.id)'>";
                                         echo "<p>" . Superhero::findById($member->getSuperheroId())->getName() . "</p>";
+                                        echo "</a>";
                                         echo "</div>";
                                         echo "</div>";
                                         echo "</div>";
                                     }
                                 ?>
+                                <form id="superhero-form" action="superhero.php" method="post">
+                                    <input id="superheroID" type="hidden" name="superheroID">
+                                </form>
                             </div>
                         </div>
                         <br>

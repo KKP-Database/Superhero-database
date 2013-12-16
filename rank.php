@@ -66,9 +66,10 @@
                                     echo "<img src='" . $superhero->getImageUrl() . "'>";
                                     echo "</a>";
                                     echo "</td>";
-                                    echo "<td><a href='#' id='" . $superhero->getId() . "' onclick='sendSuperheroID(this.id)'>Superman</a></td>";
+                                    echo "<td><a href='#' id='" . $superhero->getId() . "' onclick='sendSuperheroID(this.id)'>" . $superhero->getName() . "</a></td>";
                                     echo "<td class='col-xs-2'>" . substr($power[0], 0, 3) . "</td>";
                                     echo "</tr>";
+                                    $count++;
                                 }
                             ?>
                             <form id="superhero-form" action="superhero.php" method="post">
